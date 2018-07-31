@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: clusterchat-ingress
+  annotations:
+    nginx.org/websocket-services: "api"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+
+spec:
+  backend:
+    serviceName: default-http-backend
+    servicePort: 80
+  rules:
+  - host: dev.dolph
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ui
+          servicePort: 3001
+      - path: /test
+        backend:
+          serviceName: ui
+          servicePort: 3001
+      - path: /ws
+        backend:
+          serviceName: api
+          servicePort: 3002
+      - path: /api
+        backend:
+          serviceName: api
+          servicePort: 3000
+      

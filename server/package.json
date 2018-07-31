@@ -1,6 +1,6 @@
 {
   "name": "clusterchat-server",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Simple Chat App from socket.io example",
   "main": "index.js",
   "dependencies": {

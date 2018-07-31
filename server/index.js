@@ -1,25 +1,26 @@
-// Setup basic express server
-// var express = require('express');
-// var app = express();
 var server = require('http').createServer();
 var io = require('socket.io')(server, { path: '/ws/socket.io' });
 var redis = require('socket.io-redis');
-var port = process.env.PORT || 3000;
+
+var PORT = process.env.PORT || 3000;
+var REDIS_PORT = process.env.REDIS_HOST | 6379;
+var REDIS_HOST = process.env.REDIS_HOST | 'redis';
+
 var serverName = process.env.NAME || 'Unknown';
 
-io.adapter(redis({ host: 'redis', port: 6379 }));
+io.adapter(redis({ host: REDIS_HOST, port: REDIS_PORT }));
 
-server.listen(port, function () {
-  console.log('Server listening at port %d', port);
-  console.log('Hello, I\'m %s, how can I help?', serverName);
+server.listen(PORT, function () {
+  console.log('Server listening at port %d', PORT);
+  console.log('ServerName: %s', serverName);
 });
 
-// Routing
-// app.use(express.static(__dirname + '/public'));
+Routing
+app.use(express.static(__dirname + '/public'));
 
-// app.get('/ping', (req, res, next) => {
-//   res.json(`Hello from ${serverName}`);
-// });
+app.get('/ping', (req, res, next) => {
+  res.json(`Hello from ${serverName}`);
+});
 
 // Chatroom
 
