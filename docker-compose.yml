@@ -1,10 +1,19 @@
 version: '3'
 
 services:
+  redis:
+    image: redis:alpine
+    expose:
+      - "6379"
   nginx:
+    depends_on:
+      - server-one
+      - server-two
+      - server-three
+      - server-four
     build: ./nginx
     ports:
-    - "80:80"
+      - "80:80"
 
   server-webapp:
     build: ./webapp
@@ -21,6 +30,9 @@ services:
       - "3000"
     environment:
       - NAME=one
+      - PORT=3000
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
 
   server-two:
     depends_on:
@@ -30,7 +42,8 @@ services:
       - "3000"
     environment:
       - NAME=two
-
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
   server-three:
     depends_on:
       - redis
@@ -39,6 +52,8 @@ services:
       - "3000"
     environment:
       - NAME=three
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
 
   server-four:
     depends_on:
@@ -48,8 +63,7 @@ services:
       - "3000"
     environment:
       - NAME=four
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
 
-  redis:
-    image: redis:alpine
-    expose:
-      - "6379"
+
