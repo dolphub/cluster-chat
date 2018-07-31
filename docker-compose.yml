@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  nginx:
+    build: ./nginx
+    ports:
+    - "80:80"
+
+  server-webapp:
+    build: ./webapp
+    expose:
+      - "3001"
+    environment:
+      - PORT=3001
+
+  server-one:
+    build: ./server
+    depends_on:
+      - redis
+    expose:
+      - "3000"
+    environment:
+      - NAME=one
+
+  server-two:
+    depends_on:
+      - redis
+    build: ./server
+    expose:
+      - "3000"
+    environment:
+      - NAME=two
+
+  server-three:
+    depends_on:
+      - redis
+    build: ./server
+    expose:
+      - "3000"
+    environment:
+      - NAME=three
+
+  server-four:
+    depends_on:
+      - redis
+    build: ./server
+    expose:
+      - "3000"
+    environment:
+      - NAME=four
+
+  redis:
+    image: redis:alpine
+    expose:
+      - "6379"

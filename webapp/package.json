@@ -1,0 +1,13 @@
+{
+  "name": "clusterchat-webapp",
+  "version": "0.0.1",
+  "description": "From socket.io's examples abstracted from server portion",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}

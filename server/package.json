@@ -1,0 +1,14 @@
+{
+  "name": "clusterchat-server",
+  "version": "0.0.1",
+  "description": "Simple Chat App from socket.io example",
+  "main": "index.js",
+  "dependencies": {
+    "express": "4.13.4",
+    "socket.io": "^1.7.2",
+    "socket.io-redis": "^3.0.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
