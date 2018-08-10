@@ -2,11 +2,13 @@ var server = require('http').createServer();
 var io = require('socket.io')(server, { path: '/ws/socket.io' });
 var redis = require('socket.io-redis');
 
+const os = require('os');
+
 var PORT = process.env.PORT || 3000;
 var REDIS_PORT = process.env.REDIS_PORT || 6379;
 var REDIS_HOST = process.env.REDIS_HOST || 'redis';
 
-var serverName = process.env.NAME || 'Unknown';
+var serverName = process.env.NAME || os.hostname();
 
 io.adapter(redis({ host: REDIS_HOST, port: REDIS_PORT }));
 

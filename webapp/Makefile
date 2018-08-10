@@ -5,11 +5,11 @@ TAG ?= "clusterchat-webapp:"$(PACKAGE_VERSION)
 
 .PHONY: build
 build:
-	$(DOCKER_BIN) build . -t $(TAG)
+	$(DOCKER_BIN) build . -t dolphub/$(TAG)
 
 .PHONY: push
 push:
-	$(DOCKER_BIN) push $(TAG)
+	$(DOCKER_BIN) push dolphub/$(TAG)
 
 .PHONY: release
 release: build push

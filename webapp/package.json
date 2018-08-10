@@ -1,6 +1,6 @@
 {
   "name": "clusterchat-webapp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "From socket.io's examples abstracted from server portion",
   "main": "index.js",
   "license": "MIT",

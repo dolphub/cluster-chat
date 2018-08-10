@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: clusterchat-server
 spec:
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: clusterchat-server
-        image: dolphub/clusterchat-server:0.1.0
+        image: dolphub/clusterchat-server:0.1.1
         ports:
         - containerPort: 3000
         env:

@@ -1,0 +1,37 @@
+config:
+  target: "http://dev.dolph/"
+  socketio:
+    transports: ["websocket"]
+    query:
+      path: "/ws/socket.io"
+
+  phases:
+    - duration: 10
+      arrivalRate: 1
+    - duration: 10
+      arrivalRate: 5
+  variables:
+    greeting: ["hello", "goedemorgen", "добрый день", "guten tag", "bonjour", "hola"]
+  processor: "./functions.js"
+
+scenarios:
+  - name: "A chatty user"
+    weight: 100
+    engine: "socketio"
+    flow:
+      - get:
+          url: "/"
+      - emit:
+          channel: "add user"
+          data: "chatty-{{ $randomString() }}"
+      - emit:
+          channel: "new message"
+          data: "{{ greeting }}"
+      - loop:
+          - function: "setMessage"
+          - emit:
+              channel: "new message"
+              data: "{{ message }}"
+          - think: 10
+        count: 10
+      - think: 60

@@ -1,0 +1,12 @@
+{
+    "name": "clusterchat-loadtest-artillery",
+    "version": "1.0.0",
+    "description": "Load testing scripts for Socket.io example chat app",
+    "main": "index.js",
+    "scripts": {
+      "load": "artillery run clusterchat-load-test.yaml"
+    },    
+    "dependencies": {
+      "artillery": "1.5.0-19"
+    }
+  }
