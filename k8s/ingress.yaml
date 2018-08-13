@@ -26,16 +26,15 @@ spec:
         backend:
           serviceName: webapp
           servicePort: 3001
-      - path: /test
-        backend:
-          serviceName: webapp
-          servicePort: 3001
       - path: /ws
         backend:
           serviceName: server
           servicePort: 3000
-      # - path: /api
-      #   backend:
-      #     serviceName: api
-      #     servicePort: 3000
+  # - host: <anotherapp>.dev.dolph
+  #   http:
+  #     paths:
+  #     - path: /
+  #       backend:
+  #         serviceName: <servicename>
+  #         servicePort: <appport>
       
