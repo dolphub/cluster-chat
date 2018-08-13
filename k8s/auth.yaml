@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: myauthsecret
+data:
+  auth: YWRtaW46JGFwcjEkZzNsTVdubzUkT1Flb1ZucnF6NGlRamRYc1JrT2c3MQ==

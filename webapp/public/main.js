@@ -24,7 +24,7 @@ $(function() {
   var lastTypingTime;
   var $currentInput = $usernameInput.focus();
 
-  var socket = io(window.origin, { path: '/ws/socket.io' });
+  var socket = io(`${window.location.origin}${window.location.pathname}`, { path: '/ws/socket.io' });
 
   function addParticipantsMessage (data) {
     var message = '';
