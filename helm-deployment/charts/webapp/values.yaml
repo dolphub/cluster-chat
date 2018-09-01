@@ -1,0 +1,5 @@
+replicas: 1
+
+image:
+  repository: dolphub/clusterchat-webapp
+  tag: 0.1.2

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: clusterchat-server
 spec:
-  replicas: 3
+  replicas: {{ .Values.replicas }}
   template:
     metadata:
       labels:
@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: clusterchat-server
-        image: dolphub/clusterchat-server:0.1.2
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
         - containerPort: 3000
         env:
@@ -20,7 +20,7 @@ spec:
         - name: REDIS_PORT
           value: "6379"
         - name: REDIS_HOST
-          value: "redis"
+          value: "{{ .Release.Name }}-redis"
 ---
 apiVersion: v1
 kind: Service

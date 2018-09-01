@@ -1,0 +1,19 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: tls-secret
+spec:
+  secretName: tls-secret
+  dnsNames:
+  - dev.dolph
+  - chat.dev.dolph
+  - mailer.dev.dolph
+  acme:
+    config:
+    - http01:
+        ingressClass: nginx
+      domains:
+      - dev.dolph
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
