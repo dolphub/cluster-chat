@@ -1,22 +1,30 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: clusterchat-webapp
+  name: {{ template "fullname" . }}
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
-  replicas: {{ .Values.replicas }}
+  replicas: {{ .Values.replicaCount }}
   template:
     metadata:
       labels:
-        app: clusterchat-webapp
+        app: {{ template "name" . }}
+        chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+        release: {{ .Release.Name }}
+        heritage: {{ .Release.Service }}
     spec:
       containers:
       - name: clusterchat-webapp
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
-        - containerPort: 3001
+        - containerPort: {{ .Values.port }}
         env:
         - name: PORT
-          value: "3001"
+          value: {{ .Values.port | quote }}
 ---
 apiVersion: v1
 kind: Service
@@ -25,7 +33,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - port: 3001
-    targetPort: 3001
+  - port: {{ .Values.port }}
+    targetPort: {{ .Values.port }}
   selector:
     app: clusterchat-webapp

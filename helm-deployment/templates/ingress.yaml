@@ -16,14 +16,14 @@ metadata:
     
 spec:
   rules:
-  - host: {{ .Values.ingress.domain }}
+  - host: {{ .Values.ingress.host }}
     http:
       paths:
       - path: /
         backend:
           serviceName: webapp
-          servicePort: 3001
+          servicePort: {{ .Values.webapp.port }}
       - path: /ws
         backend:
           serviceName: server
-          servicePort: 3000
+          servicePort: {{ .Values.server.port }}

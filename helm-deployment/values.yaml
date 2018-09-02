@@ -1,12 +1,13 @@
 webapp:
-  replicas: 1
+  replicaCount: 1
 
 server:
-  replicas: 1
+  replicaCount: 1
 
 redis:
   usePassword: false
 
 ingress:
-  domain: chat.dev.dolph
+  host: chat.dev.dolph
+
   # Define servicename/ports in _helpers.tpl

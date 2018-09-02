@@ -1,4 +1,6 @@
-replicas: 1
+replicaCount: 1
+
+port: 3000
 
 image:
   repository: dolphub/clusterchat-server
