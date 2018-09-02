@@ -3,10 +3,10 @@
 ######
 
 webapp:
-  replicaCount: 1
+  replicaCount: 2
 
 server:
-  replicaCount: 1
+  replicaCount: 5
 
 redis:
   usePassword: false
