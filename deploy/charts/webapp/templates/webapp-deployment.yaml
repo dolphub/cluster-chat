@@ -18,7 +18,7 @@ spec:
         heritage: {{ .Release.Service }}
     spec:
       containers:
-      - name: clusterchat-webapp
+      - name: {{ template "fullname" . }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
         - containerPort: {{ .Values.port }}
@@ -29,7 +29,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: webapp
+  name: {{ template "name" . }}
 spec:
   type: ClusterIP
   ports:
