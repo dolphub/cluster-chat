@@ -40,4 +40,5 @@ spec:
   - port: {{ .Values.port }}
     targetPort: {{ .Values.port }}
   selector:
-    app: clusterchat-server
+    app: {{ template "name" . }}
+    release: {{ .Release.Name }}

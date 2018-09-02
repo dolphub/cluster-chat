@@ -9,5 +9,8 @@ redis:
 
 ingress:
   host: chat.dev.dolph
+  basicAuth:
+    enabled: false
+    secretName: myauthsecret
+    secretHash: YWRtaW46JGFwcjEkZzNsTVdubzUkT1Flb1ZucnF6NGlRamRYc1JrT2c3MQ==
 
-  # Define servicename/ports in _helpers.tpl

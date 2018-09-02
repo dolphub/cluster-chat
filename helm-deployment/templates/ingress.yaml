@@ -2,17 +2,18 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: clusterchat-ingress
-  annotations:
+  annotations:    
     nginx.ingress.kubernetes.io/ingress.class: nginx
+
+    {{- if .Values.ingress.basicAuth.enabled }}
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: {{ .Values.ingress.basicAuth.secretName }}
+    nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
+    {{- end }}
 
     nginx.ingress.kubernetes.io/affinity: "cookie"
     nginx.ingress.kubernetes.io/session-cookie-name: "route"
     nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
-    
-    # type of authentication [basic|digest]
-    # nginx.ingress.kubernetes.io/auth-type: basic
-    # nginx.ingress.kubernetes.io/auth-secret: myauthsecret
-    # nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
     
 spec:
   rules:
